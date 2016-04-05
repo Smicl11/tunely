@@ -35,6 +35,8 @@ app.get('/api', controllers.api.index);
 
 app.get('/api/albums', controllers.albums.index);
 
+app.post('/api/albums', controllers.albums.index);
+
 /**********
  * SERVER *
  **********/

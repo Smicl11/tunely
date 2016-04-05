@@ -39,7 +39,18 @@
 
 $(document).ready(function() {
   console.log('app.js loaded!');
-  // sampleAlbums.forEach(renderAlbum);
+
+  $('#album-form form').on("submit", function (event) {
+    event.preventDefault();
+    console.log( $(this).serialize() );
+    $.ajax({
+      method: 'POST',
+      url: '/api/albums/',
+      success: handleSuccess,
+      error: handleError
+    });
+    $(this).trigger("reset");
+  });
 
   $.ajax({
     method: 'GET',
@@ -49,7 +60,7 @@ $(document).ready(function() {
   });
 
 function handleSuccess(json) {
-  console.log(json);
+  // console.log(json);
   json.forEach(renderAlbum);
 
 }
@@ -60,13 +71,9 @@ function handleError(e) {
 
 });
 
-
-
-
-
 // this function takes a single album and renders it to the page
 function renderAlbum(album) {
-  console.log('rendering album:', album);
+  // console.log('rendering album:', album);
   var source = $('#album-template').html();
   var template = Handlebars.compile(source);
   var newHTML = template(album);
