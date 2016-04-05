@@ -7,7 +7,7 @@ var Song = require("./song.js");
 var AlbumSchema = new Schema ({
   artistName: String,
   name: String,
-  song: [Song.schema],
+  songs: [Song.schema],
   releaseDate: String,
   genres: [ String ]
 });
