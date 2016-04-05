@@ -29,8 +29,10 @@ function create(req, res) {
 
   newAlbum.save(function(err, album) {
     if (err) {
+      console.log("an error occured: ", err);
       res.send(err);
     } else {
+      console.log("saved ", album);
       res.json(album);
     }
   });
