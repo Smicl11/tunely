@@ -42,11 +42,12 @@ $(document).ready(function() {
 
   $('#album-form form').on("submit", function (event) {
     event.preventDefault();
-    console.log( $(this).serialize() );
+    // console.log( $(this).serialize() );
     $.ajax({
       method: 'POST',
       url: '/api/albums/',
-      success: handleSuccess,
+      data: $(this).serialize(),
+      success: renderAlbum,
       error: handleError
     });
     $(this).trigger("reset");

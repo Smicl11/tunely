@@ -20,7 +20,21 @@ function index(req, res) {
 }
 
 function create(req, res) {
-  // FILL ME IN !
+  var newAlbum = new db.Album({
+    artistName: req.body.artistName,
+    name: req.body.name,
+    releaseDate: req.body.releaseDate,
+    genres: [req.body.genres]
+  });
+
+  newAlbum.save(function(err, album) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(album);
+    }
+  });
+
 }
 
 function show(req, res) {
