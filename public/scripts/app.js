@@ -60,15 +60,24 @@ $(document).ready(function() {
     error: handleError
   });
 
-function handleSuccess(json) {
-  // console.log(json);
-  json.forEach(renderAlbum);
+  function handleSuccess(json) {
+    // console.log(json);
+    json.forEach(renderAlbum);
 
-}
+  }
 
-function handleError(e) {
-  console.log("It's broken", e);
-}
+  function handleError(e) {
+    console.log("It's broken", e);
+  }
+
+  $('#albums').on('click', '.add-song', function(e) {
+      console.log('add-song clicked!');
+      var id= $(this).closest('.album').data('album-id'); // "5665ff1678209c64e51b4e7b"
+      console.log('id',id);
+      $('#songModal').data('album-id', id);
+      $('#songModal').modal('show');
+  });
+
 
 });
 
